@@ -1,18 +1,43 @@
 import NavBar from "../components/NavBar";
 import useVisibilityDelays from "../hooks/useVisibilityDelays";
+import Head from "next/head";
 
-export default function Page() {
+/**
+ * About Component
+ * This component represents the "About" page of the portfolio, which provides
+ * detailed information about Benjamin Druce's background, skills, aspirations, and experience.
+ * The page includes an animated background, a navigation bar, and sections detailing
+ * technical skills, aspirations, and experience in health tech.
+ */
+
+export default function AboutPage() {
+  // Using custom hook to manage visibility delays for background, title, and description
   const { bgFinished, makeDescriptionVisible, makeTitleVisible } =
     useVisibilityDelays();
 
   return (
     <div className="flex flex-col font-font-eb-garamond sm:flex-row justify-start w-full min-h-[100vh] relative ">
+      {/* Head component for SEO and meta tags */}
+      <Head>
+        <title>About</title> {/* Page title */}
+        <meta
+          name="keywords"
+          content="Full Stack Engineer, Software Engineer, Web Developer, UI/UX, electronRx, Cambridge"
+        />{" "}
+        {/* Meta keywords for SEO */}
+        <meta name="author" content="Benjamin Druce" /> {/* Author meta tag */}
+      </Head>
+
+      {/* Navigation bar with link back to home */}
       <NavBar
         links={[{ href: "/", label: "home" }]}
         textColor="text-black"
         borderColor="border-black"
       />
+
+      {/* Main section with animated title and content */}
       <div className="w-full sm:w-6/12 p-4 sm:p-44 flex flex-col items-start relative text-zinc-800">
+        {/* Animated page title */}
         <h2
           className={`text-8xl sm:text-[14rem] lg:text-[16rem] xl:text-[20rem] font-monsters p-4 sm:p-0 transition-transform duration-500 absolute ${
             makeTitleVisible
@@ -38,7 +63,7 @@ export default function Page() {
           </h3>
         </div>
 
-        {/* Main content */}
+        {/* Main content with detailed information */}
         <div
           className={`text-xl w-full xl:w-3/4 font-font-grand-slang-roman transition-transform duration-500 absolute flex flex-col gap-8 p-4 pr-8 sm:p-0 sm:pt-4 sm:pb-44 top-80 sm:top-[32rem] ${
             bgFinished
@@ -46,6 +71,7 @@ export default function Page() {
               : "opacity-0 -translate-y-10"
           }`}
         >
+          {/* Overview of skills and expertise */}
           <p>
             With a strong command over both front-end and back-end technologies
             and a keen focus on creating seamless software solutions, I
@@ -66,7 +92,7 @@ export default function Page() {
             innovation and collaborative success.
           </p>
 
-          {/* New Aspirations Section */}
+          {/* Aspirations Section */}
           <p className="text-3xl font-font-eb-garamond">Aspirations</p>
           <p>
             My ultimate goal is to run my own tech-based startup, where I can
@@ -83,7 +109,7 @@ export default function Page() {
             and bring innovative products to market.
           </p>
 
-          {/* New Health Tech Experience Section */}
+          {/* Health Tech Experience Section */}
           <p className="text-3xl font-font-eb-garamond">
             Impact in Health Tech
           </p>
@@ -103,12 +129,14 @@ export default function Page() {
             meaningful impact on society.
           </p>
 
+          {/* Final Call to Action */}
           <p>
             If you are looking for a developer with a balanced mix of methodical
             thinking and innovative problem-solving, let's connect and explore
             how my expertise can contribute to the success of your next project.
           </p>
 
+          {/* Software and Development Skills Section */}
           <p className="text-3xl font-font-eb-garamond">
             Software and Development
           </p>
@@ -135,8 +163,9 @@ export default function Page() {
             </ul>
           </div>
 
+          {/* Experience Section */}
           <p className="text-3xl font-font-eb-garamond">Experience</p>
-          <div className=" gap-4 w-full">
+          <div className="gap-4 w-full">
             <ul>
               <li>
                 - Software Engineer @{" "}
@@ -150,18 +179,20 @@ export default function Page() {
                 </a>
               </li>
               <li> - UK Computer Science BSc @ Loughborough University </li>
-
               <li>- Freelance Web Development</li>
             </ul>
           </div>
 
+          {/* Skills Section */}
           <p className="text-3xl font-font-eb-garamond">Skills</p>
           <p>
             Web Application Development / Web Development / UI/UX Design / App
             Development / Computer Science / Collaboration / Problem Solving /
             Logical Thinking
           </p>
-          <div className=" flex flex-col gap-2">
+
+          {/* Link to CV */}
+          <div className="flex flex-col gap-2">
             <a
               href="/files/Benjamin Druce CV.pdf"
               alt="alt text"

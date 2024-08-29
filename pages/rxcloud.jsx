@@ -1,63 +1,60 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import AnimatedBackground from "../components/AnimatedBackground";
 import NavBar from "../components/NavBar";
 import useVisibilityDelays from "../hooks/useVisibilityDelays";
+import Head from "next/head";
 
-export default function Page() {
+/**
+ * RxCloud Page Component
+ * This component represents the RxCloud project page, which provides an overview
+ * of the RxCloud dashboard—a data visualization platform for cardio-pulmonary health metrics.
+ * The page includes an animated background, a navigation bar, and detailed sections on
+ * the project overview, technical contributions, and the technology stack used.
+ */
+
+export default function RxCloud() {
+  // Using custom hook to manage visibility delays for background, title, and description
   const { bgFinished, makeDescriptionVisible, makeTitleVisible } =
     useVisibilityDelays();
 
   return (
     <div className="flex flex-col sm:flex-row justify-between w-full h-[100vh] relative">
+      {/* Head component for SEO and meta tags */}
+      <Head>
+        <title>Benjamin Druce</title> {/* Page title */}
+        <meta
+          name="keywords"
+          content="Full Stack Engineer, Software Engineer, Web Developer, UI/UX, electronRx, Cambridge"
+        />{" "}
+        {/* Meta keywords for SEO */}
+        <meta name="author" content="Benjamin Druce" /> {/* Author meta tag */}
+      </Head>
+
+      {/* Animated background with visibility based on useVisibilityDelays hook */}
       <AnimatedBackground
         isVisible={bgFinished}
         bgColor="bg-zinc-800"
         duration={500}
       />
 
+      {/* Navigation bar with link back to the projects page */}
       <NavBar links={[{ href: "/projects", label: "projects" }]} />
 
-      <div className="w-full sm:w-3/12 p-4 sm:py-44 flex flex-col items-start justify-end relative ">
+      {/* Section containing the RxCloud project title */}
+      <div className="w-full sm:w-3/12 p-4 sm:py-44 flex flex-col items-start justify-end relative">
         <h2
           className={`text-7xl sm:text-9xl font-font-eb-garamond text-orange-50 transition-transform duration-500 transform sm:absolute  ${
             makeTitleVisible
               ? "visible sm:translate-y-[-200%]"
-              : " invisible sm:translate-y-0"
+              : "invisible sm:translate-y-0"
           }`}
         >
           RxCloud
         </h2>
-
-        {/* <div
-          className={`flex flex-col gap-4  text-orange-50 z-50 bg-zinc-800 transition-all duration-500 ${
-            makeDescriptionVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-10"
-          }`}
-        >
-          <div className="flex flex-row  gap-4 w-full ">
-            <ul>
-              <li> - Node.js</li>
-              <li> - React</li>
-              <li> - JavaScript</li>
-              <li> - HTML</li>
-              <li> - CSS</li>
-              <li> - Python</li>
-            </ul>
-            <ul>
-              <li> - Tailwind CSS</li>
-              <li> - NoSQL</li>
-              <li> - Firebase</li>
-              <li> - Flask</li>
-              <li> - Amazon Web Services (AWS)</li>
-              <li> - Bitbucket</li>
-            </ul>
-          </div>
-         
-        </div> */}
       </div>
 
-      <div className="h-full w-full sm:w-7/12 flex flex-col sm:py-12 sm:px-12 sm:pr-24 justify-start text-xl font-montserrat sm:overflow-y-auto sm:h-[100vh">
+      {/* Main content section with project details */}
+      <div className="h-full w-full sm:w-7/12 flex flex-col sm:py-12 sm:px-12 sm:pr-24 justify-start text-xl font-montserrat sm:overflow-y-auto sm:h-[100vh]">
         <div
           className={`flex flex-col gap-4 text-orange-50 z-50 p-4 sm:p-0 bg-zinc-800 transition-all duration-500 ${
             makeDescriptionVisible
@@ -65,8 +62,9 @@ export default function Page() {
               : "opacity-0 translate-y-10"
           }`}
         >
+          {/* Project Overview section */}
           <p className="font-font-eb-garamond text-3xl font-semibold">
-            Project Overview{" "}
+            Project Overview
           </p>
           <p>
             RxCloud is an innovative data visualization dashboard I developed to
@@ -90,6 +88,8 @@ export default function Page() {
             <li>Heart Rate Variability (HRV) Charts</li>
             <li>Poincaré Plots for Heartbeat Variability</li>
           </ul>
+
+          {/* Technical Contributions section */}
           <p className="font-font-eb-garamond text-3xl font-semibold">
             Technical Contributions
           </p>
@@ -100,6 +100,8 @@ export default function Page() {
             platform. The use of technologies like Node.js, React, Python, and
             AWS has established a robust and flexible architecture.
           </p>
+
+          {/* Technology Stack section */}
           <p className="font-font-eb-garamond text-3xl font-semibold">
             Technology Stack
           </p>
@@ -119,6 +121,8 @@ export default function Page() {
               <li>AWS</li>
             </ul>
           </div>
+
+          {/* Placeholder for Visual Preview section */}
           <p className="font-font-eb-garamond text-3xl font-semibold">
             Visual Preview
           </p>

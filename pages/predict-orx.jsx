@@ -4,13 +4,28 @@ import EnlargedImage from "../components/EnlargedImage";
 import ImageGrid from "../components/ImageGrid";
 import NavBar from "../components/NavBar";
 import useVisibilityDelays from "../hooks/useVisibilityDelays"; // Adjust the path as needed
+import Head from "next/head";
 
-export default function Page() {
+/**
+ * The `PredictOrxPage` component represents a detailed project page for the PREDICT-oRx project.
+ * It showcases an overview of the project, the technical contributions made, the technology stack used,
+ * and a visual preview of the project through a grid of images. The page features a navigation bar (`NavBar`),
+ * an animated background (`AnimatedBackground`), and an interactive image grid (`ImageGrid`) that allows users
+ * to click and view enlarged images using the `EnlargedImage` component.
+ *
+ * The component makes use of the `useVisibilityDelays` hook to manage the timing of background, title, and description visibility,
+ * providing a smooth user experience with timed transitions.
+ */
+
+export default function PredictOrxPage() {
+  // Custom hook to handle visibility delays for background, title, and description
   const { bgFinished, makeDescriptionVisible, makeTitleVisible } =
     useVisibilityDelays();
 
+  // State to manage the currently enlarged image
   const [enlargeImageUrl, setEnlargeImageUrl] = useState(null);
 
+  // List of image URLs to be displayed in the image grid
   const images = [
     "predict-orx-home",
     "predict-orx-multirisk",
@@ -23,14 +38,27 @@ export default function Page() {
 
   return (
     <div className="flex flex-col sm:flex-row justify-between w-full h-[100vh] relative">
+      <Head>
+        <title>Benjamin Druce</title> {/* Page title */}
+        {/* Meta description for SEO */}
+        <meta
+          name="keywords"
+          content="Full Stack Engineer, Software Engineer, Web Developer, UI/UX, electronRx, Cambridge"
+        />{" "}
+        {/* Meta keywords for SEO */}
+        <meta name="author" content="Benjamin Druce" /> {/* Author meta tag */}
+      </Head>
+      {/* Animated background that transitions in based on the bgFinished state */}
       <AnimatedBackground
         isVisible={bgFinished}
         bgColor="bg-zinc-800"
         duration={500}
       />
 
+      {/* Navigation bar with a link to the projects page */}
       <NavBar links={[{ href: "/projects", label: "projects" }]} />
 
+      {/* Section containing the project title */}
       <div className="w-full sm:w-3/12 p-4 sm:py-44 flex flex-col items-start justify-end relative">
         <h2
           className={`text-7xl font-font-eb-garamond text-orange-50 transition-transform duration-500 transform sm:absolute ${
@@ -43,6 +71,7 @@ export default function Page() {
         </h2>
       </div>
 
+      {/* Main content section containing the project overview, technical contributions, technology stack, and visual preview */}
       <div className="h-full w-full sm:w-7/12 flex flex-col sm:py-12 sm:px-12 sm:pr-24 justify-start text-xl font-montserrat sm:overflow-y-auto sm:h-[100vh]">
         <div
           className={`flex flex-col gap-4 text-orange-50 z-50 p-4 sm:p-0 bg-zinc-800 transition-all duration-500 ${
@@ -76,6 +105,8 @@ export default function Page() {
             and potential impact. I also designed and developed a website to
             present the purpose and features of the MVP effectively.
           </p>
+
+          {/* Section highlighting the technical contributions to the project */}
           <p className="font-font-eb-garamond text-3xl font-semibold">
             Technical Contributions
           </p>
@@ -99,6 +130,8 @@ export default function Page() {
               capabilities of the MVP.
             </li>
           </ul>
+
+          {/* Section listing the technology stack used in the project */}
           <p className="font-font-eb-garamond text-3xl font-semibold">
             Technology Stack
           </p>
@@ -116,12 +149,16 @@ export default function Page() {
               <li> - Python</li>
             </ul>
           </div>
+
+          {/* Section providing a visual preview of the project through an image grid */}
           <p className="font-font-eb-garamond text-3xl font-semibold">
             Visual Preview
           </p>
           <ImageGrid images={images} onImageClick={setEnlargeImageUrl} />
         </div>
       </div>
+
+      {/* Conditionally renders the enlarged image modal when an image is clicked */}
       {enlargeImageUrl && (
         <EnlargedImage
           imageUrl={enlargeImageUrl}

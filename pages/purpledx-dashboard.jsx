@@ -1,15 +1,27 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import AnimatedBackground from "../components/AnimatedBackground";
 import EnlargedImage from "../components/EnlargedImage";
 import ImageGrid from "../components/ImageGrid";
 import NavBar from "../components/NavBar";
 import useVisibilityDelays from "../hooks/useVisibilityDelays";
+import Head from "next/head";
 
-export default function Page() {
+/**
+ * The `PurpleDxDashPage` component provides a detailed overview of the purpleDx Dashboard project.
+ * This page features an animated background, a navigation bar, and sections that describe the leadership,
+ * development, and technical aspects of the project. The page also includes an image grid with an option
+ * to enlarge the images for better viewing.
+ */
+
+export default function PurpleDxDashPage() {
+  // Using custom hook to manage visibility delays for background, title, and description
   const { bgFinished, makeDescriptionVisible, makeTitleVisible } =
     useVisibilityDelays();
+
+  // State to manage the enlarged image URL for the modal
   const [enlargeImageUrl, setEnlargeImageUrl] = useState(null);
 
+  // List of image filenames for the dashboard's visual preview section
   const images = [
     "purpledx-login",
     "purpledx-patients",
@@ -24,14 +36,27 @@ export default function Page() {
 
   return (
     <div className="flex flex-col sm:flex-row justify-between w-full h-[100vh] relative">
+      <Head>
+        <title>Benjamin Druce</title> {/* Page title */}
+        {/* Meta description for SEO */}
+        <meta
+          name="keywords"
+          content="Full Stack Engineer, Software Engineer, Web Developer, UI/UX, electronRx, Cambridge"
+        />{" "}
+        {/* Meta keywords for SEO */}
+        <meta name="author" content="Benjamin Druce" /> {/* Author meta tag */}
+      </Head>
+      {/* Animated background with transition */}
       <AnimatedBackground
         isVisible={bgFinished}
         bgColor="bg-zinc-800"
         duration={500}
       />
 
+      {/* Navigation bar with a link to the projects page */}
       <NavBar links={[{ href: "/projects", label: "projects" }]} />
 
+      {/* Section containing the project title */}
       <div className="w-full sm:w-3/12 p-4 sm:py-44 flex flex-col items-start justify-end relative">
         <h2
           className={`text-7xl font-font-eb-garamond text-orange-50 transition-transform duration-500 transform sm:absolute ${
@@ -44,6 +69,7 @@ export default function Page() {
         </h2>
       </div>
 
+      {/* Main content section with project details */}
       <div className="h-full w-full sm:w-7/12 flex flex-col sm:py-12 sm:px-12 sm:pr-24 justify-start text-xl font-montserrat sm:overflow-y-auto sm:h-[100vh]">
         <div
           className={`flex flex-col gap-4 text-orange-50 z-50 p-4 sm:p-0 bg-zinc-800 transition-all duration-500 ${
@@ -52,6 +78,7 @@ export default function Page() {
               : "opacity-0 translate-y-10"
           }`}
         >
+          {/* Leadership & Team Management section */}
           <p className="font-font-eb-garamond text-3xl font-semibold">
             Leadership & Team Management
           </p>
@@ -68,6 +95,7 @@ export default function Page() {
             enhance collaboration across the team.
           </p>
 
+          {/* Dashboard Development section */}
           <p className="font-font-eb-garamond text-3xl font-semibold">
             Dashboard Development
           </p>
@@ -83,6 +111,7 @@ export default function Page() {
             industry standards for medical data handling.
           </p>
 
+          {/* Technology Stack section */}
           <p className="font-font-eb-garamond text-3xl font-semibold">
             Technology Stack
           </p>
@@ -102,12 +131,16 @@ export default function Page() {
               <li>AWS</li>
             </ul>
           </div>
+
+          {/* Visual Preview section with image grid */}
           <p className="font-font-eb-garamond text-3xl font-semibold">
             Visual Preview
           </p>
           <ImageGrid images={images} onImageClick={setEnlargeImageUrl} />
         </div>
       </div>
+
+      {/* Enlarged image modal */}
       {enlargeImageUrl && (
         <EnlargedImage
           imageUrl={enlargeImageUrl}

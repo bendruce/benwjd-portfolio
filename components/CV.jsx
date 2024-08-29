@@ -1,13 +1,29 @@
 import React from "react";
 
+/**
+ * CV Component
+ *
+ * This component renders the detailed content of a CV, including sections for
+ * personal information, technical skills, education, work experience, and
+ * projects. The visibility of the content is controlled by the `isVisible` prop,
+ * which triggers animations for showing or hiding the CV content.
+ *
+ * Props:
+ * - `isVisible` (boolean): Controls the visibility of the CV content. When true,
+ *   the content is fully visible; when false, the content is hidden with reduced
+ *   opacity.
+ */
+
 function CV({ isVisible }) {
   return (
     <div className="h-fit sm:h-[100vh] w-full sm:w-7/12 flex flex-col sm:py-12 sm:px-12 sm:pr-24 justify-start text-xl font-montserrat sm:overflow-y-auto">
+      {/* Container for the CV content with transition effects based on visibility */}
       <div
         className={`flex flex-col h-fit gap-4 text-orange-50 z-50 bg-zinc-800 p-4 transition-all duration-500 ${
           isVisible ? "opacity-100 " : "opacity-0 "
         }`}
       >
+        {/* Personal Information Section */}
         <div className="flex flex-col items-center text-orange-50 gap-2 h-fit">
           <h2 className="text-2xl">BENJAMIN DRUCE</h2>
           <div className="flex flex-row flex-wrap text-sm gap-2 items-center text-center justify-center">
@@ -38,6 +54,7 @@ function CV({ isVisible }) {
           </div>
         </div>
 
+        {/* Technical Skills & Key Strengths Section */}
         <div className="flex flex-col w-full h-fit text-left gap-2">
           <p className="text-xl font-bold underline">
             Technical Skills & Key Strengths
@@ -54,6 +71,7 @@ function CV({ isVisible }) {
           </div>
         </div>
 
+        {/* Education Section */}
         <div className="flex flex-col w-full h-fit text-left gap-2">
           <p className="text-xl font-bold underline">Education</p>
           <div className="text-sm">
@@ -77,6 +95,7 @@ function CV({ isVisible }) {
           </div>
         </div>
 
+        {/* Work Experience Section */}
         <div className="flex flex-col w-full h-fit text-left gap-2">
           <p className="text-xl font-bold underline">Work Experience</p>
           <div className="text-sm">
@@ -118,6 +137,7 @@ function CV({ isVisible }) {
           </div>
         </div>
 
+        {/* Projects Section */}
         <div className="flex flex-col w-full h-fit text-left gap-2">
           <p className="text-xl font-bold underline">Projects</p>
           <div className="text-sm">
