@@ -96,6 +96,23 @@ export default function ProjectsPage() {
               : "opacity-0 translate-y-10"
           }`}
         >
+          <div className="w-full h-fit flex flex-col gap-2">
+            <div className="flex flex-col sm:flex-row items-start sm:items-end gap-2">
+              <a
+                href="https://grid.benwjd.com"
+                target="_blank"
+                className="block group"
+              >
+                <p className="inline hover:italic hover:translate-x-8 transform transition-transform text-7xl font-font-eb-garamond">
+                  National Grid{" "}
+                </p>
+              </a>
+              <span className="text-xl self-end pb-1">Personal Project</span>{" "}
+            </div>
+            <p className="hidden sm:block">
+              - Typescript dashboard using opensource apis
+            </p>
+          </div>
           {/* Project 1: purpleDx Dashboard */}
           <div className="w-full h-fit flex flex-col gap-2">
             <div className="flex flex-col sm:flex-row items-start sm:items-end gap-2">
