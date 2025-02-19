@@ -113,7 +113,7 @@ export default function ProjectsPage() {
               - Typescript dashboard using opensource apis
             </p>
           </div>
-          {/* Project 1: purpleDx Dashboard */}
+          {/* Project 1: purpleDx Dashboard
           <div className="w-full h-fit flex flex-col gap-2">
             <div className="flex flex-col sm:flex-row items-start sm:items-end gap-2">
               <a href="/purpledx-dashboard" className="block group">
@@ -126,7 +126,7 @@ export default function ProjectsPage() {
             <p className="hidden sm:block">
               - Node.js web application for clinical remote patient monitoring
             </p>
-          </div>
+          </div> */}
 
           {/* Project 2: Dr in Your Pocket */}
           <div className="w-full h-fit flex flex-col gap-2">
